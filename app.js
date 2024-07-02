@@ -1,8 +1,14 @@
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require("mongoose");
+
+mongoose.connect(process.env.DBURL);
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "mongo connection error"));
 
 const postsRouter = require('./routes/posts');
 const commentsRouter = require('./routes/comments');

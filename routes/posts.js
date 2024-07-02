@@ -1,25 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const blogPost = require('../models/blogPost');
+const blogPostController = require('../controller/blogPostController');
 
-router.get('/', (req, res) => {
-  res.send('Get all posts');
-});
+router.get('/', blogPostController.getAllPosts);
 
-router.post('/', (req, res) => {
-  res.send('Create a post');
-});
+router.post('/', blogPostController.createPost);
 
-router.get('/:postId', (req, res) => {
-  res.send("Get post with id:");
-});
+router.get('/:postId', blogPostController.getPost);
 
-router.delete('/:postId', (req, res) => {
-  res.send("Delete post with id:");
-});
+router.delete('/:postId', blogPostController.deletePost);
 
-router.put('/:postId', (req, res) => {
-  res.send("Update post with id:");
-});
+router.put('/:postId', blogPostController.updatePost);
 
 module.exports = router;
