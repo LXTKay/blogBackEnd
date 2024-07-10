@@ -45,6 +45,7 @@ controller.deleteComment = asyncHandler(async (req, res) => {
     res.json({message: "Comment not found"});
     return;
   };
+  await BlogPost.findOneAndUpdate({comments: req.params.commentId}, {$pull: {comments: req.params.commentId}}).exec();
   res.json({message: "Comment deleted"});
 })
 
