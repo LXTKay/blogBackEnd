@@ -14,7 +14,6 @@ controller.getAllPosts = asyncHandler(async (req, res) => {
 controller.createPost = [
   body('title', 'Title must not be empty.').trim().isLength({min: 1}).escape(),
   body('content', 'Content must not be empty.').trim().isLength({min: 1}).escape(),
-  body('isPublished', 'isPublished must not be empty.').trim().isLength({min: 1}).escape(),
 
   asyncHandler(async (req, res) => {
     const errors = validationResult(req);
@@ -27,8 +26,11 @@ controller.createPost = [
     const post = new BlogPost({
       title: req.body.title,
       content: req.body.content,
-      isPublished: req.body.isPublished
     });
+
+    if (req.body.isPublished) {
+      post.isPublished = true;
+    };
     await post.save();
   
     res.json(post);

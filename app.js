@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors());
+app.use(cors({origin: true, credentials: true}));
 
 app.use('/API/v1/posts', postsRouter);
 app.use('/API/v1/comments', commentsRouter);
