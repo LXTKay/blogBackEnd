@@ -63,7 +63,6 @@ controller.deletePost = asyncHandler(async (req, res) => {
 controller.updatePost = [
   body('title').trim().escape(),
   body('content').trim().escape(),
-  body('isPublished').trim().escape(),
 
   asyncHandler(async (req, res) => {
     const post = await BlogPost.findById(req.params.postId).exec();
@@ -75,7 +74,9 @@ controller.updatePost = [
 
     if (req.body.title) post.title = req.body.title;
     if (req.body.content) post.content = req.body.content;
-    if (req.body.isPublished) post.isPublished = req.body.isPublished;
+    if (req.body.isPublished) {
+      post.isPublished = true;
+    };
 
     await post.save();
     res.json(post);
