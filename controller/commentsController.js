@@ -6,8 +6,8 @@ const { body, validationResult } = require('express-validator');
 const controller = {};
 
 controller.createComment = [
-  body('name', 'Name must not be empty.').trim().isLength({min: 1}).isLength({max: 50}).escape(),
-  body('content', 'Content must not be empty.').trim().isLength({min: 1}).isLength({max: 1000}).escape(),
+  body('name', 'Name must not be empty and be max. 50 characters').trim().isLength({min: 1}).isLength({max: 50}).escape(),
+  body('content', 'Content must not be empty and be max 1000 characters').trim().isLength({min: 1}).isLength({max: 1000}).escape(),
   body('postId', 'PostId must not be empty.').trim().isLength({min: 1}),
 
   asyncHandler(async (req, res) => {

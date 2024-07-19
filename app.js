@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require("mongoose");
 const cors = require("cors");
+const RateLimit = require("express-rate-limit");
 
 mongoose.connect(process.env.DBURL);
 const db = mongoose.connection;
@@ -20,6 +21,12 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 50,
+});
+app.use(limiter);
 
 app.use(logger('dev'));
 app.use(express.json());
