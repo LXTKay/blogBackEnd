@@ -16,3 +16,11 @@ This project serves as the backend API for a blog application. It is responsible
 - MongoDB
 - Mongoose
 - Authentication and Authorization mechanisms
+
+## All project apps:
+
+https://github.com/LXTKay/blogFrontEndReader - Front end for readers only
+
+https://github.com/LXTKay/blogFrontEndAuthor - Front end for authors
+
+https://github.com/LXTKay/blogBackEnd - Backend for readers and authors
